@@ -1,0 +1,115 @@
+Function in C:
+1.WAP to check whether number is even or odd using function.
+2.WAP to sum digits on any given number using function.
+3.WAP to find the largest among three numbers using function and display largest number from main.
+4.Write afunction areaofcircle() which accepts radius of float value and return the area of circle.
+    Use this function to calculate area of fourcircles having different radii.
+5.WAP to add,multiply,divide and substract2 numbers given by the user.
+    Use separate function foradd,multiply,divide and substract.Display result from main function.
+6.Why do you need function. Define function call,function prototype and function definition with syntax and example.
+
+// 1.WAP to check whether number is even or odd using function.
+#include<stdio.h>
+void main(){
+    system("cls");
+    OddOrEven();
+}
+int OddOrEven(){
+    int a;
+    printf("Enter a number ");
+    scanf("%d",&a);
+    if(a % 2 == 0){
+        printf("Even");
+    }
+    else{
+        printf("Odd");
+    }
+}
+
+// 2.WAP to sum digits on any given number using function.
+#include<stdio.h>
+void main(){
+    system("cls");
+    int sum = SumDigits();
+    printf("The sum of digits is %d",sum);
+}
+int SumDigits(){
+    int num,tem,sum=0;
+    printf("Enter a number ");
+    scanf("%d",&num);
+    while(num != 0){
+        tem = num % 10;
+        num = num / 10;
+        sum = sum + tem;
+    }
+    return sum;
+}
+
+// 3.WAP to find the largest among three numbers using function and display largest number from main.
+#include<stdio.h>
+void main(){
+    system("cls");
+    int largest = LargestNumber();
+    printf("The largest number is %d",largest);
+}
+int LargestNumber(){
+    int num1,num2,num3;
+    printf("Enter three number ");
+    scanf("%d %d %d",&num1,&num2,&num3);
+    if(num1 > num2 && num1 > num3){
+        return num1;
+    }
+    else if(num2 > num1 && num2 > num3){
+        return num2;
+    }
+    else{
+        return num3;
+    }
+}
+
+/* 4.Write a function areaofcircle() which accepts radius of float value and return the area of circle.
+    Use this function to calculate area of fourcircles having different radii. */
+#include<stdio.h>
+float areaofcircle(float);
+void main(){
+    system("cls");
+    float r;
+    printf("Enter radius ");
+    scanf("%f",&r);
+    printf("Area of circle is %f",areaofcircle(r));
+}
+float areaofcircle(float r){
+    float area,pi=3.14;
+    area = pi * r * r;
+    return area;
+}
+
+/*5.WAP to add,multiply,divide and substract 2 numbers given by the user.
+    Use separate function foradd,multiply,divide and substract.Display result from main function. */
+#include<stdio.h>
+int Addition(int, int);
+int Multiplication(int, int);
+int Division(int, int);
+int Substraction(int, int);
+void main(){
+    system("cls");
+    int a,b;
+    printf("Enter two number ");
+    scanf("%d %d",&a,&b);
+    printf("Addition is %d\n",Addition(a,b));
+    printf("Multiplication is %d\n",Multiplication(a,b));
+    printf("Division is %d\n",Division(a,b));
+    printf("Substraction is %d\n",Substraction(a,b));
+}
+int Addition(int a, int b){
+    return a + b;
+}
+int Multiplication(int a, int b){
+    return a * b;
+}
+int Division(int a, int b){
+    return a / b;
+}
+int Substraction(int a, int b){
+    return a - b;
+}
