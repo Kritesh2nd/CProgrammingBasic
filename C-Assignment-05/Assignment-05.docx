@@ -1,0 +1,141 @@
+1.WAP to calculate norm and trace of matrix.
+2.WAP to find maximum and minumun value in an given array of n elements.
+3.WAP to check whether given string is palindrome or not. A palindrom word is
+sequence of characters which reads the same backward as forward, such as madam
+or racecar.You can use strcmp() function to compare 2 strings.
+4.Write a program that generates a random number between 1 and 20
+and asks the user to guess what the number is. If the user's guess is
+higher than the random number, the program should display "Too high,
+try again." If the user's guess is lower than the random number, the
+program should display "Too low, try again." The program should use a
+loop that repeats until the user correctly guesses the random number.
+Display score after user enters correct number.Total score is 20.And
+score deduced by one each time user enter wrong guess.
+You can use this code to generate random number.
+#include<stdio.h>
+#include<time.h>
+#include <stdlib.h>
+int main() 
+{
+int num;
+srand(time(0)); /* seed random number generator .Use current time as seed for
+random generator*/
+num = rand() % 20 + 1; /* random number between 1 and 20 */
+printf("%d",num);//value of num vary every time you run the program
+}
+If random numbers are generated with rand() without first calling srand(),
+your program will create the same sequence of numbers each time it runs.
+Check this link to find in detail of srand() and rand().
+https://www.geeksforgeeks.org/rand-and-srand-in-ccpp/
+Its time to upgrade your code.Try to complete this challenge.
+This question is just for your practice:
+Guess the number GAME.
+Write a Guess the Number game that has three levels of difficulty. The first level of difficulty would be a
+number between 1 and 10. The second difficulty set would be between 1 and 100. The third difficulty
+set would be between 1 and 1000. Prompt for the difficulty level, and then start the game. The
+computer picks a random number in that range and prompts the player to guess that number. Each time
+the player guesses, the computer should give the player a hint as to whether the number is too high or
+too low. The computer should also keep track of the number of guesses. Once the player guesses the
+correct number, the computer should present the number of guesses and ask if the player would like to
+play again. 
+Example Output
+Let's play Guess the Number. Pick a difficulty level (1, 2, or 3): 1
+I have my number. What's your guess? 1
+Too low. Guess again: 5 
+Too high. Guess again: 2
+You got it in 3 guesses!
+Play again? N
+Goodbye! 
+Constraints
+• Don’t allow any non-numeric data entry.
+• During the game, count non-numeric entries as wrong guesses.
+Challenges
+• Map the number of guesses taken to comments:
+– 1 guess: “You’re a mind reader!”
+– 2–4 guesses: “Most impressive.”
+– 3–6 guesses: “You can do better than that.”
+– 7 or more guesses: “Better luck next time.” 
+
+/*1.WAP to calculate norm and trace of matrix.*/
+#include<stdio.h>
+void main(){
+    system("cls");
+    int matrix1[3][3]={{2,6,7},{6,-6,8},{0,2,4}},trace=0,len1 = sizeof(matrix1[0])/4,i;
+    int matrix2[3][3]={{2,6,7},{6,2,8},{0,1,3}},normal=0,len2 = sizeof(matrix2[0])/4,j,k;
+    for(i=0;i<len1;i++){
+        trace = trace + matrix1[i][i];
+    }
+    for(j=0;j<len2;j++){
+        for(k=0;k<len2;k++){
+            normal = (normal + (matrix2[j][k] * matrix2[j][k]));
+        }
+    }
+    normal = sqrt(normal);
+    printf("The trace of matrix is %d\n",trace);
+    printf("The norm of matrix is %d\n",normal);
+}
+
+/*2.WAP to find maximum and minumun value in an given array of n elements.*/
+#include<stdio.h>
+void main(){
+    system("cls");
+    int arr[100],min,max,i,j,n;
+    printf("Enter size of array ");
+    scanf("%d",&n);
+    for(i=0;i<n;i++){
+        printf("Enter a number ");
+        scanf("%d",&arr[i]);
+    }
+    min=max=arr[0];
+    for(j=0;j<n;j++){
+        if(arr[j] < min){min = arr[j];}
+        if(arr[j] > max){max = arr[j];}
+    }
+    printf("The minumun value is array is %d\n",min);
+    printf("The maximum value is array is %d\n",max);
+}
+
+/*3.WAP to check whether given string is palindrome or not. A palindrome word is
+    sequence of characters which reads the same backward as forward, such as madam
+    or racecar.You can use strcmp() function to compare 2 strings.*/
+#include<stdio.h>
+void main(){
+    system("cls");
+    char word[100];
+    printf("Enter a word ");
+    gets(word);
+    int a=strlen(word),b=0,c=0;
+    while(b!=a/2){
+        if(word[c] == word[a-c-1]){
+            c++;
+        }
+        b++;
+    }
+    if(c == a/2){printf("String is palindrome");}
+    else {printf("String is not palindrome");}
+}
+
+/*4.Write a program that generates a random number between 1 and 20
+    and asks the user to guess what the number is. If the user's guess is
+    higher than the random number, the program should display "Too high,
+    try again." If the user's guess is lower than the random number, the
+    program should display "Too low, try again." The program should use a
+    loop that repeats until the user correctly guesses the random number.
+    Display score after user enters correct number.Total score is 20.And
+    score deduced by one each time user enter wrong guess.*/
+#include<stdio.h>
+void main(){
+    system("cls");
+    srand(time(NULL));
+    int randnum = rand() % 20 + 1,score = 21,guessnum;
+    printf("Guess a number between 1~20\n");
+    while(randnum != guessnum){
+        printf("Guess the random number ");
+        scanf("%d",&guessnum);
+        if(guessnum > randnum){printf("Too hight, try again.\n");}
+        else if(guessnum < randnum){printf("Too low, try again.\n");}
+        score--;
+    }
+    printf("You guessed right %d is right answer\n",randnum);
+    printf("Your score is %d",score);
+}
