@@ -1,0 +1,141 @@
+1.How structures are different from arrays? WAP to read name,location and phone number of an college using structure.
+2.Define nested structure.WAP that takes name,salary and date of birth of an employee and display itusing structure.
+    Data members of date of birth(Y/M/D)must be on separate structure.
+3.WAP to read name,age,height and marks obtainedin 5 different subjects by student.Also display the average marks.
+4.WAP to read serial_number,price,brand_name,model_numberof different 20 laptops using structure.
+5.WAP to read name,price and code of product in a supermarket.Pass structure to user defined function display(.....)
+    anddisplay values there.
+6.WAP to read brand_name,modelnumber,and price of 10 mobile phones.Display those phones whose price is below 10000.
+
+/*1.How structures are different from arrays? 
+    WAP to read name,location and phone number of an college using structure.
+    
+    A structure creates a data type that can be used to group items of possibly 
+    different types into a single type. Array refers to a collection consisting 
+    of elements of homogenous data type. Structure refers to a collection consisting 
+    of elements of heterogenous data type.*/
+
+#include<stdio.h>
+void main(){
+    system("cls");
+    struct clzstudent{
+        char name[20],location[30];
+        int phone;
+    };
+    struct clzstudent c;
+    printf("Enter Name, Location, Ph Number ");
+    scanf("%s %s %d",c.name,c.location,&c.phone);
+    printf("Name:%s\nLocation:%s\nPh Number:%d",c.name,c.location,c.phone);
+}
+
+/*2.Define nested structure.WAP that takes name,salary and date of birth of an employee and display it using structure.
+    Data members of date of birth(Y/M/D)must be on separate structure.
+    
+    Nested structure in C is nothing but structure within structure. 
+    One structure can be declared inside other structure as we declare 
+    structure members inside a structure. The structure variables can 
+    be a normal structure variable or a pointer variable to access the data.*/
+#include<stdio.h>
+void main(){
+    system("cls");
+    struct DateOfBirth{
+        int year,month,day;
+    };
+    struct DataEmployee{
+        char name[30];
+        int salary;
+        struct DateOfBirth dob;
+    };
+    struct DataEmployee dm;
+    printf("Enter Name, Salary, DOB in (Y/M/D) format ");
+    scanf("%s %d %d %d %d",dm.name,&dm.salary,&dm.dob.year,&dm.dob.month,&dm.dob.day);
+    printf("Name:%s\nSalary:%d\nYear:%d\nMonth:%d\nDay:%d\n",dm.name,dm.salary,dm.dob.year,dm.dob.month,dm.dob.day);
+}
+
+/*3.WAP to read name,age,height and marks obtainedin 5 different subjects by student.Also display the average marks.*/
+#include<stdio.h>
+void main(){
+    system("cls");
+    int a,b,avg=0;
+    struct StudentData{
+        char name[30];
+        int age,marks[5];
+        float height;
+    };
+    struct StudentData sd;
+    printf("Enter Name, Age, Height ");
+    scanf("%s %d %f",sd.name,&sd.age,&sd.height);
+    for(a=0;a<5;a++){
+        printf("Enter marks for subject %d ",a+1);
+        scanf("%d",&sd.marks[a]);
+        avg = avg + sd.marks[a];
+    }
+    printf("\nName:%s\nAge:%d\nHeight:%f\nMarks\n",sd.name,sd.age,sd.height);
+    for(b=0;b<5;b++){
+       printf("Subject %d: %d\n",b+1,sd.marks[b]);
+    }
+    printf("Average marks is %d",avg/5);
+}
+
+/*4.WAP to read serial_number,price,brand_name,model_number of different 20 laptops using structure.*/
+#include<stdio.h>
+void main(){
+    system("cls");
+    struct LaptopData{
+        int snum,price;
+        char bname[50],mnum[50];
+    };
+    struct LaptopData ld[20];
+    for(int a=0;a<20;a++){
+        printf("Enter BrandName, SerialNumber, ModelNUmber, Price ");
+        scanf("%s %d %s %d",ld[a].bname,&ld[a].snum,ld[a].mnum,&ld[a].price);
+    }
+    for(int b=0;b<20;b++){
+        printf("\nBrandName:%s\nSerialNumber:%d\nModelNUmber:%s\nPrice:%d\n",ld[b].bname,ld[b].snum,ld[b].mnum,ld[b].price);
+    }
+}
+
+/*5.WAP to read name,price and code of product in a supermarket.
+    Pass structure to user defined function display(.....)and display values there.*/
+#include<stdio.h>
+struct ProcuctData{
+        char name[50];
+        int price,code;
+    };
+void PrintProduct(struct ProcuctData *data);
+void main(){
+    system("cls");
+    
+    struct ProcuctData pd;
+    printf("Enter Name, Price, Code: ");
+    scanf("%s %d %d",pd.name,&pd.price,&pd.code);
+    PrintProduct(&pd);
+}
+void PrintProduct(struct ProcuctData *data){
+    printf("Name:%s\nPrice:%d\nCode:%d",data->name,data->price,data->code);
+}
+
+/*6.WAP to read brand_name,modelnumber,and price of 10 mobile phones.
+    Display those phones whose price is below 10000.*/
+#include<stdio.h>
+struct MobileData{
+    char bname[50];
+    int mnum,price;
+};
+void PrintMobileData(struct MobileData *data);
+void main(){
+    system("cls");
+    struct MobileData md[3];
+    for(int a=0;a<3;a++){
+        printf("Input BrandName, ModelNumber, Price: ");
+        scanf("%s %d %d",md[a].bname,&md[a].mnum,&md[a].price);
+    }
+    for(int b=0;b<3;b++){
+        PrintMobileData(&md[b]);
+    }
+}
+void PrintMobileData(struct MobileData *data){
+    if(data->price < 10000){
+        printf("\nBrand Name:%s\nModel Number:%d\nPrice:%d\n",data->bname,data->mnum,data->price);
+    }
+}
