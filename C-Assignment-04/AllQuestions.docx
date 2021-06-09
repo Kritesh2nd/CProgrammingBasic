@@ -1,0 +1,224 @@
+1.WAP to take input from user and increment its value by 10 using function.Display result from main.
+2.How pointer variable is different from normal variable.
+    If double a=50 and double*p=&a; (assume address of a=156772).
+    WAP that shows ouput of a,&a,p,*p.
+    What is difference between p++ and a++?
+3.WAP to add and substract two values using function.
+    i.Use different function for addition and substraction and display result inside function.
+    ii.Use different function for addition and substraction and display result from main.
+    iii.Use same function for addition and substraction and display result from main.
+4.WAP to swap two values using function and display result from main.
+5.How do you define array?Explain with syntax.WAP to take n input in array from user and display their average.
+6.WAP to take n input from user in an array.
+    Add all the even numbers and odd numbers separately.
+    Display count of even numbes,odd numbers and average of even and odd separately.
+7.WAP to read 2 matrices from user.Add them and display result.
+    i)Take input inside main
+    ii)Make different function to take input from userand to display values.
+=========================================================================================================
+1.WAP to take input from user and increment its value by 10 using function.Display result from main.
+#include<stdio.h>
+int increment(int);
+void main(){
+    system("cls");
+    int a,b;
+    printf("Enter a number ");
+    scanf("%d",&a);
+    b = increment(a);
+    printf("The increased value is %d",b);
+}
+int increment(int x){
+    return x+10;
+}
+=========================================================================================================
+2.How pointer variable is different from normal variable.
+    If double a=50 and double*p=&a; (assume address of a=156772).
+    WAP that shows ouput of a,&a,p,*p.
+    What is difference between p++ and a++?
+#include<stdio.h>
+void main(){
+    system("cls");
+    double a=50, *p=&a;
+    printf("The out of a: %lf\n",a);
+    printf("The out of &a: %lf\n",&a);
+    printf("The out of p: %lf\n",p);
+    printf("The out of *p: %lf\n",*p);
+}
+=========================================================================================================
+3.WAP to add and substract two values using function.
+    i.Use different function for addition and substraction and display result inside function.
+    ii.Use different function for addition and substraction and display result from main.
+    iii.Use same function for addition and substraction and display result from main.*/
+i.Use different function for addition and substraction and display result inside function.
+#include<stdio.h>
+int Addition(int, int);
+int Substraction(int, int);
+void main(){
+    system("cls");
+    int a,b;
+    printf("Enter two number ");
+    scanf("%d %d",&a,&b);
+    Addition(a,b);
+    Substraction(a,b);
+}
+int Addition(int x, int y){
+    printf("The addition is %d\n",x+y);
+}
+int Substraction(int x, int y){
+    printf("The substraction is %d\n",x-y);
+}
+
+ii.Use different function for addition and substraction and display result from main.
+#include<stdio.h>
+int Addition(int, int);
+int Substraction(int, int);
+void main(){
+    system("cls");
+    int a,b;
+    printf("Enter two number ");
+    scanf("%d %d",&a,&b);
+    printf("The addition is %d\n",Addition(a,b));
+    printf("The substraction is %d\n",Substraction(a,b));
+}
+int Addition(int x, int y){return x + y;}
+int Substraction(int x, int y){return x - y;}
+
+iii.Use same function for addition and substraction and display result from main.
+#include<stdio.h>
+void main(){
+    system("cls");
+    int a,b,c,d;
+    printf("Enter two number ");
+    scanf("%d %d",&a,&b);
+    AddSub(a,b,&c,&d);
+    printf("%d %d",c,d);
+}
+int AddSub(int w, int  x, int*y, int *z){
+    *y = w+x;
+    *z = w-x;
+}
+=========================================================================================================
+4.WAP to swap two values using function and display result from main.
+#include<stdio.h>
+void main(){
+    system("cls");
+    int a,b;
+    printf("Enter two nummber ");
+    scanf("%d %d",&a,&b);
+    Swap(&a,&b);
+    printf("%d %d",a,b);
+}
+int Swap(int *x, int *y){
+    int temp;
+    temp = *x;
+    *x = *y;
+    *y = temp;
+}
+=========================================================================================================
+5.How do you define array?Explain with syntax.WAP to take n input in array from user and display their average.
+#include<stdio.h>
+void main(){
+    system("cls");
+    int n,sum=0,avg,x,y;
+    printf("Enter n number ");
+    scanf("%d",&n);
+    int arr[n];
+    for(x=0;x<n;x++){
+        printf("Enter a number ");
+        scanf("%d",&y);
+        arr[x] = y;
+        sum = sum + arr[x];
+    }
+    avg=sum/n;
+    printf("The average is %d",avg);
+}
+=========================================================================================================
+6.WAP to take n input from user in an array.
+    Add all the even numbers and odd numbers separately.
+    Display count of even numbes,odd numbers and average of even and odd separately.
+#include<stdio.h>
+void main(){
+    system("cls");
+    int n,i,sumodd=0,sumeven=0,countodd=0,counteven=0,avgodd,avgeven;
+    printf("Enter n number ");
+    scanf("%d",&n);
+    int arr[n];
+    for(i=0;i<n;i++){
+        printf("Enter a number ");
+        scanf("%d",&arr[i]);
+        if(arr[i] % 2 == 0){
+            sumeven = sumeven + arr[i];
+            counteven++;
+        }
+        else{
+            sumodd = sumodd + arr[i];
+            countodd++;
+        }
+    }
+    avgodd = sumodd / countodd;
+    avgeven = sumeven / counteven;
+    printf("Sum of odd and even number are %d and %d\n",sumodd,sumeven);
+    printf("There are %d odd and %d even numbers\n",countodd,counteven);
+    printf("The average of odd and even number are %d and %d\n",avgodd,avgeven);
+}
+=========================================================================================================
+7.WAP to read 2 matrices from user.Add them and display result.
+i)Take input inside main
+#include<stdio.h>
+void main(){
+    system("cls");
+    int matrix1[2][2],matrix2[2][2],matrix3[2][2],i,j;
+    for(i=0;i<2;i++){
+        for(j=0;j<2;j++){
+            printf("Enter a number for first matrix ");
+            scanf("%d",&matrix1[i][j]);
+        }
+    }
+    printf("\n");
+    for(i=0;i<2;i++){
+        for(j=0;j<2;j++){
+            printf("Enter a number for second matrix ");
+            scanf("%d",&matrix2[i][j]);
+            matrix3[i][j] = matrix1[i][j] + matrix2[i][j];
+        }
+    }
+    printf("Displaying sum of  first & second matrix\n");
+    for(i=0;i<2;i++){
+        for(j=0;j<2;j++){
+            printf("%d ",matrix3[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+ii)Make different function to take input from user and to display values.
+#include<stdio.h>
+int matrix1[2][2],matrix2[2][2],matrix3[2][2],i,j;
+void main(){
+    system("cls");
+    matrix();
+    printf("Displaying sum of  first & second matrix\n");
+    for(i=0;i<2;i++){
+        for(j=0;j<2;j++){
+            printf("%d ",matrix3[i][j]);
+        }
+        printf("\n");
+    }
+}
+int matrix(){
+    for(i=0;i<2;i++){
+        for(j=0;j<2;j++){
+            printf("Enter a number for first matrix ");
+            scanf("%d",&matrix1[i][j]);
+        }
+    }
+    printf("\n");
+    for(i=0;i<2;i++){
+        for(j=0;j<2;j++){
+            printf("Enter a number for second matrix ");
+            scanf("%d",&matrix2[i][j]);
+            matrix3[i][j] = matrix1[i][j] + matrix2[i][j];
+        }
+    }
+}
+=========================================================================================================
